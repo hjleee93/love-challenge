@@ -4,6 +4,7 @@
 @import url("components/quiz.css");
 @import url('components/buttons.css');
 @import url('components/story.css');
+@import url('components/bottomNav.css');
 
 
 body {
@@ -48,14 +49,14 @@ footer{
   font-family:'HS-Regular';
   text-align: center;
   position: fixed;
-  bottom: 10px;
+  bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
+
 }
 
 
 footer p {
-  
   font-size: 1.4em;
   font-weight: bold;
   color: var(--accent-color);

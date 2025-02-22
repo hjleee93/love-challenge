@@ -50,7 +50,6 @@ export default new class Quiz {
   #questionDisplay;
   #optionsContainer;
   #optionButtons
-  #startButton;
   #bars;
 
   constructor() {
@@ -66,13 +65,27 @@ export default new class Quiz {
     this.#questionDisplay = document.getElementById("question-display");
     this.#optionsContainer = document.getElementById("options-container");
     this.#optionButtons = document.querySelectorAll("#options-container .option");
-    this.#startButton = document.getElementById("start-quiz");
     this.#bars = document.querySelectorAll(".bar");
   }
 
   startQuiz() {
+    console.log('start')
+
     this.#currentQuestionIndex = 0;
     this.#scores = { words: 0, acts: 0, gifts: 0, time: 0, touch: 0 };
+
+  toggleElementById('results-section');
+  toggleElementById('quiz-section');
+
+  this.#bars.forEach(bar => {
+    bar.style.height = '0%';
+    bar.style.backgroundColor = '#e0e0e0';
+    bar.textContent = '';
+    bar.style.opacity = '1';
+    bar.style.padding = '0';
+  });
+
+  this.showQuestion();
   }
 
   showQuestion() {
@@ -90,8 +103,6 @@ export default new class Quiz {
       } else {
         button.style.display = "none";
       }
-
-
     });
 
   }

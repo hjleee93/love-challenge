@@ -4,6 +4,7 @@ import { toggleElementById,showOnlyElem } from './common.js';
 import hero from './hero.js';
 import quiz from './quiz.js';
 import story from './story.js';
+import { createBottomNav } from './bottomNav.js'
 
 
 
@@ -61,31 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /**
-   * Create menu
-   */
-
-  const heroSection = document.getElementById('hero')
-  const storyBtn = document.createElement('button')
-  const worldBtn = document.createElement('button')
-  const dailyBtn = document.createElement('button')
-
-  storyBtn.textContent = 'Read Love Stories';
-  worldBtn.textContent = 'Explore the Love Around the World';
-
-  dailyBtn.textContent = 'View Love Stories';
-
-  storyBtn.addEventListener('click', () =>{
-    showOnlyElem('stories')
-    story.initCarousel();
-  })
-   
-  heroSection.appendChild(storyBtn);
-  heroSection.appendChild(worldBtn);
-  heroSection.appendChild(dailyBtn);
-  // viewStories.classList.add('story-btn')
-
-
-  /**
    * Hero Section
    */
   
@@ -112,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
   })();
   hero.addIcon();
   hero.flipCard();
-  hero.addNextButton();
 
   /**
    * Quiz Section
@@ -156,9 +131,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const startBtn = document.getElementById('start-quiz')
   const optionBtns = document.querySelectorAll('.option')
+
   startBtn.addEventListener('click',() => {
     quiz.showQuestion()
+    startBtn.style.display = "none"; 
   })
+
   optionBtns.forEach((btn,index) => {
     if(index === 0){
       btn.textContent = 'CLICK'
@@ -182,13 +160,33 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       
     }
-  })
+  });
 
   /**
    * Story
    */
 
-  // story.showStory();
+  (() => {
+    const titleEl = document.querySelector('#stories>h2');
+    if (titleEl) {
+      let text = titleEl.textContent;
+      text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+      titleEl.innerHTML = text;
+
+      text = text.replace("Love",
+        "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+      titleEl.innerHTML = text;
+
+      const heartEl = titleEl.querySelector('.heart');
+
+      if (heartEl) {
+        heartEl.classList.add('floating-heart');
+      }
+    }
+  })();
+
+      
+  story.initCarousel();
 
   /**
    * Share
@@ -209,3 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 })
+
+
+/**
+ * Create Bottom Navigation
+ */
+window.addEventListener('DOMContentLoaded', createBottomNav);

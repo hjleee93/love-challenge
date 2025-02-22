@@ -13,27 +13,24 @@ export default new class Story {
   }
 
   initCarousel() {
-    // 캐러셀에 필요한 스타일 적용
     this.storyCarousel.style.display = 'flex';
     this.storyCarousel.style.transition = 'transform 0.5s ease-in-out';
 
-    // 각 스토리 카드에 스타일 적용
     this.storyCards.forEach((card) => {
       card.style.flex = '0 0 100%'; // 한 번에 하나의 카드만 보이도록
       card.style.boxSizing = 'border-box';
     });
 
     this.updateCarousel();
+   
   }
 
   addEventListeners() {
-    // 이전 버튼 클릭
+   
     this.prevBtn.addEventListener('click', () => this.prevStory());
 
-    // 다음 버튼 클릭
     this.nextBtn.addEventListener('click', () => this.nextStory());
 
-    // 확장 버튼 클릭
     this.expandButtons.forEach((btn, index) => {
       btn.addEventListener('click', () => this.toggleFullContent(index, btn));
     });

@@ -1,0 +1,39 @@
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* 네비게이션 버튼 스타일 */
+.bottom-nav-btn {
+  font-family: 'HS-Regular';
+  box-shadow: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+  flex: 1;
+  padding: 5px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* 호버 효과 */
+.bottom-nav-btn:hover {
+  transform: scale(1.1);
+  color: var(--accent-color);
+}
+
+/* 이모지 스타일 */
+.bottom-nav-btn span {
+  display: block;
+  font-size: 20px;
+}

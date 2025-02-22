@@ -1,0 +1,120 @@
+#hero{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  height: calc(100vh - 120px);
+  text-align: center;
+}
+#hero > h1 {
+  font-family: 'EF_jejudoldam'
+}
+
+#language-cards {
+  display: flex;
+  gap:12px;
+  margin-bottom:40px;
+  margin-top: 20px;
+  font-family: 'HS-Regular';
+ }
+
+.love-card {
+  height: 60px;
+  width: 100px;
+  background-color: #ffe6f2;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  color: #333;
+}
+
+.love-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+#language-cards .card[data-language="words"] {
+  background-color: #ffd1e7;
+}
+#language-cards .card[data-language="acts"] {
+  background-color: #ffeed1;
+}
+#language-cards .card[data-language="gifts"] {
+  background-color: #d1f7ff;
+}
+#language-cards .card[data-language="time"] {
+  background-color: #e4d1ff;
+}
+#language-cards .card[data-language="touch"] {
+  background-color: #d1ffd9;
+}
+
+
+.flip-container {
+  perspective: 1000px;
+  width: 100%;
+  position: relative;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-container.flipped .flipper {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.card-front {
+  z-index: 2;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  padding: 10px;
+}
+
+.next-quiz-btn {
+  font-family: 'HS-Regular';
+  padding: 12px 24px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.next-quiz-btn:hover {
+opacity: 0.6;
+}

@@ -1,0 +1,211 @@
+
+import { shareToSns } from './share.js';
+import { toggleElementById,showOnlyElem } from './common.js';
+import hero from './hero.js';
+import quiz from './quiz.js';
+import story from './story.js';
+
+
+
+function addFavicon(url) {
+  const link = document.createElement('link');
+  link.type = "image/png"
+  link.rel = 'icon';
+  link.href = url;
+  document.head.appendChild(link);
+}
+
+addFavicon('assets/images/favicon.ico');
+
+
+function createFloatingHeart(x, y) {
+  const heart = document.createElement("span");
+  heart.classList.add("clicked-heart");
+  heart.html
+  heart.innerHTML = "<span class='love-word' style='color: var(--accent-color); position: relative;'><span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>"
+
+  heart.style.left = `${x}px`;
+  heart.style.top = `${y}px`;
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 1000);
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /**
+   * Import main.css
+   */
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'assets/styles/main.css';
+  document.head.appendChild(link);
+
+
+
+
+  document.body.addEventListener("click", (event) => {
+    createFloatingHeart(event.clientX, event.clientY);
+  });
+
+
+  toggleElementById('quiz-section');
+  toggleElementById('results-section');
+  toggleElementById('stories');
+  toggleElementById('global-expressions');
+  toggleElementById('daily-challenge');
+
+
+  /**
+   * Create menu
+   */
+
+  const heroSection = document.getElementById('hero')
+  const storyBtn = document.createElement('button')
+  const worldBtn = document.createElement('button')
+  const dailyBtn = document.createElement('button')
+
+  storyBtn.textContent = 'Read Love Stories';
+  worldBtn.textContent = 'Explore the Love Around the World';
+
+  dailyBtn.textContent = 'View Love Stories';
+
+  storyBtn.addEventListener('click', () =>{
+    showOnlyElem('stories')
+    story.initCarousel();
+  })
+   
+  heroSection.appendChild(storyBtn);
+  heroSection.appendChild(worldBtn);
+  heroSection.appendChild(dailyBtn);
+  // viewStories.classList.add('story-btn')
+
+
+  /**
+   * Hero Section
+   */
+  
+  //Change the color of specific parts of the text
+  (() => {
+    const titleEl = document.querySelector('.title');
+    if (titleEl) {
+
+      let text = titleEl.textContent;
+      text = text.replace("Discover", "<span style='color: #2ecc71;'>Discover</span>");
+      text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+      titleEl.innerHTML = text;
+
+      text = text.replace("Love",
+        "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+      titleEl.innerHTML = text;
+
+      const heartEl = titleEl.querySelector('.heart');
+
+      if (heartEl) {
+        heartEl.classList.add('floating-heart');
+      }
+    }
+  })();
+  hero.addIcon();
+  hero.flipCard();
+  hero.addNextButton();
+
+  /**
+   * Quiz Section
+   */
+
+(() => {
+  const titleEl = document.querySelector('#quiz-section>h2');
+  if (titleEl) {
+    let text = titleEl.textContent;
+    text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+    titleEl.innerHTML = text;
+
+    text = text.replace("Love",
+      "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+    titleEl.innerHTML = text;
+
+    const heartEl = titleEl.querySelector('.heart');
+
+    if (heartEl) {
+      heartEl.classList.add('floating-heart');
+    }
+  }
+
+  const resultEl = document.querySelector('#results-section>h2');
+  if (resultEl) {
+    let text = resultEl.textContent;
+    text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+    resultEl.innerHTML = text;
+
+    text = text.replace("Love",
+      "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+    resultEl.innerHTML = text;
+
+    const heartEl = resultEl.querySelector('.heart');
+
+    if (heartEl) {
+      heartEl.classList.add('floating-heart');
+    }
+  }
+})();
+
+  const startBtn = document.getElementById('start-quiz')
+  const optionBtns = document.querySelectorAll('.option')
+  startBtn.addEventListener('click',() => {
+    quiz.showQuestion()
+  })
+  optionBtns.forEach((btn,index) => {
+    if(index === 0){
+      btn.textContent = 'CLICK'
+      btn.addEventListener('click', () =>{
+        quiz.showQuestion()
+        startBtn.style.display = "none"; 
+      })
+    }else if(index === 1){
+      btn.textContent = 'ANY BUTTON'
+      btn.addEventListener('click', () =>{
+        quiz.showQuestion()
+        startBtn.style.display = "none"; 
+      })
+      
+    }
+    else if(index === 2){
+      btn.textContent = 'TO START'
+      btn.addEventListener('click', () =>{
+        quiz.showQuestion()
+        startBtn.style.display = "none"; 
+      })
+      
+    }
+  })
+
+  /**
+   * Story
+   */
+
+  // story.showStory();
+
+  /**
+   * Share
+   */
+  const twitterButton = document.querySelector('.share-btn[data-platform="twitter"]');
+  const instaButton = document.querySelector('.share-btn[data-platform="instagram"]');
+  const facebookButton = document.querySelector('.share-btn[data-platform="facebook"]');
+
+  instaButton.addEventListener('click', () => {
+    shareToSns('instagram')
+  });
+  twitterButton.addEventListener('click', () => {
+    shareToSns('twitter')
+  });
+
+  facebookButton.addEventListener('click', () => {
+    shareToSns('facebook')
+  });
+
+})

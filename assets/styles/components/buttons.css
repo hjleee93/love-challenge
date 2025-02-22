@@ -1,0 +1,30 @@
+button {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.share-btn{
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.share-btn:hover{
+  opacity: 0.8;
+}
+
+.share-btn[data-platform="facebook"] {
+  background-color: #1877F2;
+}
+
+.share-btn[data-platform='instagram'] {
+  background-color: #DD2A7B;
+}
+
+.share-btn[data-platform="twitter"] {
+  background-color: #1DA1F2;
+}
+

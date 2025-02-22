@@ -1,0 +1,106 @@
+/* 기본 섹션 스타일 */
+#stories {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'HS-Regular';
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  height: calc(100vh - 120px);
+  text-align: center;
+}
+
+h2{
+  font-family: 'EF_jejudoldam';
+  margin-bottom: 40px;
+}
+/* 캐러셀 컨테이너 */
+#story-carousel {
+  display: flex;
+  gap:20px;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+  
+}
+
+/* 각 스토리 카드 */
+.story-card {
+  background-color: var(--secondary-color);
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #f9f9f9;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+}
+
+.story-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.story-card .preview {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* 확장 버튼 */
+.expand-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* 네비게이션 버튼 */
+#story-nav {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#story-nav button {
+  font-family: 'HS-Regular';
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#story-nav button:hover, .expand-btn:hover {
+  opacity: 0.6;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .story-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .story-card .preview {
+    font-size: 0.9rem;
+  }
+
+  #story-nav button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}

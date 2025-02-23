@@ -1,10 +1,5 @@
 export default new class Loading{
-  constructor() {
-    document.documentElement.style.visibility = "hidden"; // HTML 전체 숨기기
-  }
 
-
-// 2. 로딩 스피너 생성
  createLoadingSpinner = () => {
   const spinnerWrapper = document.createElement('div');
   spinnerWrapper.id = 'loading-spinner';

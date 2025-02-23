@@ -8,6 +8,8 @@ import { createBottomNav } from './bottomNav.js'
 import world, { leafletScript } from './world.js';
 import loading from './loading.js';
 
+document.documentElement.style.visibility = "hidden"; 
+
 loading.createLoadingSpinner()
 
 function addFavicon(url) {
@@ -37,7 +39,7 @@ function createFloatingHeart(x, y) {
   }, 1000);
 }
 
-
+  
 document.addEventListener('DOMContentLoaded', function () {
   /**
    * Import main.css
@@ -266,16 +268,9 @@ document.addEventListener('DOMContentLoaded', function () {
     shareToSns('facebook')
   });
 
+  createBottomNav()
+
 })
-
-
-
-/**
- * Create Bottom Navigation
- */
-window.addEventListener('DOMContentLoaded', createBottomNav);
-
-
 
 
 window.addEventListener('load', () => {

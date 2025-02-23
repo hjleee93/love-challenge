@@ -6,8 +6,7 @@ import quiz from './quiz.js';
 import story from './story.js';
 import { createBottomNav } from './bottomNav.js'
 import world, { leafletScript } from './world.js';
-import { createLoadingSpinner } from './loading.js';
-createLoadingSpinner()
+
 function addFavicon(url) {
   const link = document.createElement('link');
   link.type = "image/png"

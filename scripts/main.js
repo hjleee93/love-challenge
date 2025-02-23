@@ -7,7 +7,7 @@ import story from './story.js';
 import { createBottomNav } from './bottomNav.js'
 import world, { leafletScript } from './world.js';
 import { createLoadingSpinner } from './loading.js';
-
+createLoadingSpinner()
 function addFavicon(url) {
   const link = document.createElement('link');
   link.type = "image/png"
@@ -34,7 +34,7 @@ function createFloatingHeart(x, y) {
     heart.remove();
   }, 1000);
 }
-createLoadingSpinner()
+
 
 document.addEventListener('DOMContentLoaded', function () {
   /**

@@ -6,7 +6,7 @@ import quiz from './quiz.js';
 import story from './story.js';
 import { createBottomNav } from './bottomNav.js'
 import world, { leafletScript } from './world.js';
-import challenge from './challenge.js';
+import { createLoadingSpinner } from './loading.js';
 
 function addFavicon(url) {
   const link = document.createElement('link');
@@ -34,7 +34,7 @@ function createFloatingHeart(x, y) {
     heart.remove();
   }, 1000);
 }
-
+createLoadingSpinner()
 
 document.addEventListener('DOMContentLoaded', function () {
   /**
@@ -265,6 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 })
+
 
 
 /**

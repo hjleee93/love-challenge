@@ -6,11 +6,6 @@ import quiz from './quiz.js';
 import story from './story.js';
 import { createBottomNav } from './bottomNav.js'
 import world, { leafletScript } from './world.js';
-import loading from './loading.js';
-
-document.documentElement.style.visibility = "hidden"; 
-
-loading.createLoadingSpinner()
 
 function addFavicon(url) {
   const link = document.createElement('link');
@@ -271,8 +266,3 @@ document.addEventListener('DOMContentLoaded', function () {
   createBottomNav()
 
 })
-
-
-window.addEventListener('load', () => {
-  loading.removeLoadingSpinner()
-});

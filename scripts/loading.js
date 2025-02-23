@@ -1,8 +1,11 @@
-// 1. body를 숨김 (초기 설정)
-document.documentElement.style.visibility = "hidden"; // HTML 전체 숨기기
+export default new class Loading{
+  constructor() {
+    document.documentElement.style.visibility = "hidden"; // HTML 전체 숨기기
+  }
+
 
 // 2. 로딩 스피너 생성
-const createLoadingSpinner = () => {
+ createLoadingSpinner = () => {
   const spinnerWrapper = document.createElement('div');
   spinnerWrapper.id = 'loading-spinner';
   spinnerWrapper.style.position = 'fixed';
@@ -39,7 +42,7 @@ const createLoadingSpinner = () => {
 };
 
 // 3. 스피너 제거 & body 표시
-const removeLoadingSpinner = () => {
+ removeLoadingSpinner = () => {
   const spinner = document.getElementById('loading-spinner');
   if (spinner) {
     spinner.style.opacity = '0';
@@ -51,11 +54,4 @@ const removeLoadingSpinner = () => {
     }, 500); // 트랜지션 후 제거
   }
 };
-
-// HTML 숨긴 상태에서 스피너 추가
-createLoadingSpinner();
-
-// 모든 리소스가 로드된 후 스피너 제거 & HTML 표시
-window.addEventListener('load', () => {
-  removeLoadingSpinner();
-});
+}

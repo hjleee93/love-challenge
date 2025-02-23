@@ -5,6 +5,8 @@
 @import url('components/buttons.css');
 @import url('components/story.css');
 @import url('components/bottomNav.css');
+@import url('components/world.css');
+@import url('components/challenge.css');
 
 
 body {

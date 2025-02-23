@@ -1,0 +1,48 @@
+#global-expressions{
+  text-align: center;
+  flex-direction: column;
+}
+#map-container {
+  width: 70%;
+  height: 100%; 
+  border: 2px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  margin: auto;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+#region-markers {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+
+#region-info {
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  font-size: 1.2rem;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+#map {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  margin: 20px auto;
+} 
+
+#region-info {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 10px auto;
+}

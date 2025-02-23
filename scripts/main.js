@@ -1,12 +1,12 @@
 
 import { shareToSns } from './share.js';
-import { toggleElementById,showOnlyElem } from './common.js';
+import { toggleElementById, showOnlyElem } from './common.js';
 import hero from './hero.js';
 import quiz from './quiz.js';
 import story from './story.js';
 import { createBottomNav } from './bottomNav.js'
-
-
+import world, { leafletScript } from './world.js';
+import challenge from './challenge.js';
 
 function addFavicon(url) {
   const link = document.createElement('link');
@@ -37,7 +37,6 @@ function createFloatingHeart(x, y) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
   /**
    * Import main.css
    */
@@ -64,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
    * Hero Section
    */
-  
+
   //Change the color of specific parts of the text
   (() => {
     const titleEl = document.querySelector('.title');
@@ -93,72 +92,72 @@ document.addEventListener('DOMContentLoaded', function () {
    * Quiz Section
    */
 
-(() => {
-  const titleEl = document.querySelector('#quiz-section>h2');
-  if (titleEl) {
-    let text = titleEl.textContent;
-    text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
-    titleEl.innerHTML = text;
+  (() => {
+    const titleEl = document.querySelector('#quiz-section>h2');
+    if (titleEl) {
+      let text = titleEl.textContent;
+      text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+      titleEl.innerHTML = text;
 
-    text = text.replace("Love",
-      "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
-    titleEl.innerHTML = text;
+      text = text.replace("Love",
+        "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+      titleEl.innerHTML = text;
 
-    const heartEl = titleEl.querySelector('.heart');
+      const heartEl = titleEl.querySelector('.heart');
 
-    if (heartEl) {
-      heartEl.classList.add('floating-heart');
+      if (heartEl) {
+        heartEl.classList.add('floating-heart');
+      }
     }
-  }
 
-  const resultEl = document.querySelector('#results-section>h2');
-  if (resultEl) {
-    let text = resultEl.textContent;
-    text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
-    resultEl.innerHTML = text;
+    const resultEl = document.querySelector('#results-section>h2');
+    if (resultEl) {
+      let text = resultEl.textContent;
+      text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+      resultEl.innerHTML = text;
 
-    text = text.replace("Love",
-      "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
-    resultEl.innerHTML = text;
+      text = text.replace("Love",
+        "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+      resultEl.innerHTML = text;
 
-    const heartEl = resultEl.querySelector('.heart');
+      const heartEl = resultEl.querySelector('.heart');
 
-    if (heartEl) {
-      heartEl.classList.add('floating-heart');
+      if (heartEl) {
+        heartEl.classList.add('floating-heart');
+      }
     }
-  }
-})();
+  })();
 
   const startBtn = document.getElementById('start-quiz')
   const optionBtns = document.querySelectorAll('.option')
 
-  startBtn.addEventListener('click',() => {
+  startBtn.addEventListener('click', () => {
     quiz.showQuestion()
-    startBtn.style.display = "none"; 
+    startBtn.style.display = "none";
   })
 
-  optionBtns.forEach((btn,index) => {
-    if(index === 0){
+  optionBtns.forEach((btn, index) => {
+    if (index === 0) {
       btn.textContent = 'CLICK'
-      btn.addEventListener('click', () =>{
+      btn.addEventListener('click', () => {
         quiz.showQuestion()
-        startBtn.style.display = "none"; 
+        startBtn.style.display = "none";
       })
-    }else if(index === 1){
+    } else if (index === 1) {
       btn.textContent = 'ANY BUTTON'
-      btn.addEventListener('click', () =>{
+      btn.addEventListener('click', () => {
         quiz.showQuestion()
-        startBtn.style.display = "none"; 
+        startBtn.style.display = "none";
       })
-      
+
     }
-    else if(index === 2){
+    else if (index === 2) {
       btn.textContent = 'TO START'
-      btn.addEventListener('click', () =>{
+      btn.addEventListener('click', () => {
         quiz.showQuestion()
-        startBtn.style.display = "none"; 
+        startBtn.style.display = "none";
       })
-      
+
     }
   });
 
@@ -184,9 +183,68 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   })();
-
-      
   story.initCarousel();
+
+  /**
+   * Love of world
+   */
+  
+  (() => {
+    const titleEl = document.querySelector('#global-expressions>h2');
+    if (titleEl) {
+      let text = titleEl.textContent;
+      text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+      titleEl.innerHTML = text;
+
+      text = text.replace("Love",
+        "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+      titleEl.innerHTML = text;
+
+      const heartEl = titleEl.querySelector('.heart');
+
+      if (heartEl) {
+        heartEl.classList.add('floating-heart');
+      }
+    }
+  })();
+  const markers = document.querySelectorAll('.marker')
+  markers.forEach((marker) => {
+    marker.style.display = 'none'
+  })
+
+  leafletScript.onload = () => {
+    if (window.L) {
+      world.initMap(window.L);
+    
+    } else {
+      console.error('Leaflet library failed to load.');
+    }
+  };
+  /**
+   * Love Challenge
+   */
+
+  document.getElementById('new-challenge').style.display = 'none'
+  document.getElementById('completion-tracker').style.display = 'none'
+
+  const titleEl = document.querySelector('#daily-challenge>h2');
+  if (titleEl) {
+    let text = titleEl.textContent;
+    text = text.replace("Love", "<span style='color: var(--accent-color);'>Love</span>");
+    titleEl.innerHTML = text;
+
+    text = text.replace("Love",
+      "<span class='love-word' style='color: var(--accent-color); position: relative;'>Love<span class='heart' style='position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 1.2em; opacity: 0;'>&#10084;</span></span>");
+    titleEl.innerHTML = text;
+
+    const heartEl = titleEl.querySelector('.heart');
+
+    if (heartEl) {
+      heartEl.classList.add('floating-heart');
+    }
+  }
+
+  
 
   /**
    * Share

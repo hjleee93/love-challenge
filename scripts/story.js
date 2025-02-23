@@ -17,7 +17,7 @@ export default new class Story {
     this.storyCarousel.style.transition = 'transform 0.5s ease-in-out';
 
     this.storyCards.forEach((card) => {
-      card.style.flex = '0 0 100%'; // 한 번에 하나의 카드만 보이도록
+      card.style.flex = '0 0 100%'; 
       card.style.boxSizing = 'border-box';
     });
 
@@ -55,7 +55,6 @@ export default new class Story {
     const story = this.storyCards[index];
     let fullContent = story.querySelector('.full-content');
 
-    // full-content가 없으면 생성
     if (!fullContent) {
       fullContent = document.createElement('div');
       fullContent.classList.add('full-content');
@@ -65,7 +64,6 @@ export default new class Story {
       fullContent.style.overflow = 'hidden';
       fullContent.style.transition = 'max-height 0.5s ease';
 
-      // 확장 내용 (스토리별)
       const fullTexts = {
         words: "Words can heal, inspire, and uplift. In this story, a simple compliment changes someone's entire day, highlighting the true power of positive speech.",
         acts: "Love isn't always about grand gestures. A cup of coffee made with care or a door held open can say more than words.",
@@ -78,13 +76,12 @@ export default new class Story {
       story.appendChild(fullContent);
     }
 
-    // 확장/축소 토글 애니메이션
     if (fullContent.style.maxHeight === '0px' || fullContent.style.maxHeight === '0') {
       fullContent.style.maxHeight = fullContent.scrollHeight + 'px';
-      btn.textContent = '-'; // 확장 시 버튼 변경
+      btn.textContent = '-';
     } else {
       fullContent.style.maxHeight = '0';
-      btn.textContent = '+'; // 축소 시 버튼 변경
+      btn.textContent = '+';
     }
   }
 
